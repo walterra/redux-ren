@@ -1,12 +1,12 @@
 {
   "name": "redux-ren",
-  "version": "1.0.0-alpha1",
+  "version": "1.0.0-alpha2",
   "description": "Redux ...",
   "keywords": [
     "redux"
   ],
-  "homepage": "https://d3js.org/d3-array/",
-  "license": "BSD-3-Clause",
+  "homepage": "github.com/walterra/redux-ren",
+  "license": "Apache-2.0",
   "author": {
     "name": "Walter Rafelsberger",
     "url": "http://www.rafelsberger.at"
@@ -23,7 +23,7 @@
     "dev": "rollup -c -w",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
     "prepublish": "npm run test && uglifyjs build/redux-ren.js -c -m -o build/redux-ren.min.js",
-    "postpublish": "git push && git push --tags && zip -j build/d3-array.zip -- LICENSE README.md build/d3-array.js build/d3-array.min.js"
+    "postpublish": "git push && git push --tags && zip -j build/redux-ren.zip -- LICENSE.md README.md build/redux-ren.js build/redux-ren.min.js"
   },
   "devDependencies": {
     "eslint": "3",
