@@ -38,7 +38,11 @@ export default function({ id, rootComponent, actions = {}, initialState = {} }) 
         if (typeof actionTestResult === 'object') {
           syncActions[actionName] = actions[actionName];
         } else if (typeof actionTestResult === 'function') {
-          dispatchActions[actionName] = actions[actionName];
+          // if the action returned another function, we pass it on to be handled by redux-thunk.
+          // "dispatchActions" is passed on as an argument, so async actions can easily trigger
+          // another action by directly calling it instead of using something like
+          // dispatch({ type: 'ACTION_NAME' });
+          dispatchActions[actionName] = () => dispatch(actions[actionName](dispatchActions));
         }
       } catch (e) {
         throw new Error('error calling action: ' + e);
@@ -63,9 +67,7 @@ export default function({ id, rootComponent, actions = {}, initialState = {} }) 
   };
 
   const ReduxComponent = connect(
-    (state) => {
-      return state;
-    },
+    state => state,
     mapDispatchToProps
   )(rootComponent);
 

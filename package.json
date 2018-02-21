@@ -1,11 +1,11 @@
 {
   "name": "redux-ren",
-  "version": "1.0.0-alpha2",
-  "description": "Redux ...",
+  "version": "1.0.0-alpha3",
+  "description": "Write react-redux without boilerplate.",
   "keywords": [
     "redux"
   ],
-  "homepage": "github.com/walterra/redux-ren",
+  "homepage": "https://github.com/walterra/redux-ren",
   "license": "Apache-2.0",
   "author": {
     "name": "Walter Rafelsberger",
