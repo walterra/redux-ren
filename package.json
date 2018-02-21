@@ -1,6 +1,6 @@
 {
   "name": "redux-ren",
-  "version": "1.0.0-alpha3",
+  "version": "1.0.0-alpha4",
   "description": "Write react-redux without boilerplate.",
   "keywords": [
     "redux"
