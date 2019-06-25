@@ -1,29 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect, Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import {
+  connect,
+  Provider
+} from 'react-redux';
+import {
+  applyMiddleware,
+  compose,
+  createStore
+} from 'redux';
 import thunk from 'redux-thunk';
 
-export default function({ id, rootComponent, actions = {}, initialState = {} }) {
+const ren = function({ id, rootComponent, actions = {}, initialState = {} }) {
   // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() || compose;
 
-  const store = createStore(
-    (state = initialState, action) => {
-      if (
-        typeof actions !== 'undefined' &&
-        typeof actions[action.type] !== 'undefined'
-      ) {
-        let actionResult;
-        if (typeof action.payload !== 'undefined') {
-          actionResult = actions[action.type](action.payload, state);
-        } else {
-          actionResult = actions[action.type](undefined, state);
-        }
-        return { ...state, ...actionResult };
+  const reducer = (state = initialState, action) => {
+    if (
+      typeof actions !== 'undefined' &&
+      typeof actions[action.type] !== 'undefined'
+    ) {
+      let actionResult;
+      if (typeof action.payload !== 'undefined') {
+        actionResult = actions[action.type](action.payload, state);
+      } else {
+        actionResult = actions[action.type](undefined, state);
       }
+      return { ...state, ...actionResult };
+    }
 
-      return state;
-    },
+    return state;
+  };
+
+  const store = createStore(
+    reducer,
     compose(applyMiddleware(thunk))
   );
 
@@ -80,3 +89,7 @@ export default function({ id, rootComponent, actions = {}, initialState = {} }) 
 
   return { ReduxComponent, store };
 }
+
+ren.connect = connect;
+
+export default ren;

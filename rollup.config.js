@@ -12,13 +12,14 @@ export default [
       name: 'ren'
     },
     plugins: [
-      resolve(),
       commonjs({
         include: 'node_modules/**',
         namedExports: {
-          'node_modules/react/index.js': ['Component', 'PureComponent', 'Children', 'createElement']
+          'node_modules/react/index.js': ['Component', 'PureComponent', 'Children', 'createElement'],
+          'node_modules/react-is/index.js': ['isValidElementType']
         }
       }),
+      resolve(),
       buble({
         exclude: ['node_modules/**'],
         objectAssign: 'Object.assign'
